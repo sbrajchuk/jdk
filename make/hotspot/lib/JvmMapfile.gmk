@@ -98,7 +98,7 @@ else ifeq ($(call isTargetOs, aix), true)
        }'
 
 else ifeq ($(call isTargetOs, windows), true)
-  DUMP_SYMBOLS_CMD := $(DUMPBIN) -symbols *$(OBJ_SUFFIX)
+  DUMP_SYMBOLS_CMD := for obj in *$(OBJ_SUFFIX); do $(DUMPBIN) -symbols $$obj; done
 
   # The following lines create a list of vftable symbols to be filtered out of
   # the mapfile. Removing this line causes the linker to complain about too many
